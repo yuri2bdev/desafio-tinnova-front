@@ -1,27 +1,128 @@
-# DesafioTinnovaFront
+# Desafio Tinnova - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+Este projeto é uma aplicação web desenvolvida para resolver os desafios técnicos propostos pela Tinnova. A aplicação foi construída utilizando Angular 16 e Material Design, oferecendo uma interface moderna e responsiva.
 
-## Development server
+## 🚀 Desafios Implementados
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. **Cálculo de Fatorial**
+   - Interface intuitiva para cálculo de fatorial
+   - Validação de entrada
+   - Exibição de exemplos
 
-## Code scaffolding
+2. **Cálculo de Múltiplos**
+   - Cálculo de múltiplos de 3 e 5
+   - Interface amigável
+   - Resultados em tempo real
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. **Ordenação de Números**
+   - Implementação do algoritmo Bubble Sort
+   - Interface para entrada de números
+   - Visualização do resultado ordenado
 
-## Build
+4. **Cálculo de Percentuais de Votos**
+   - Cálculo de percentuais de votos válidos, brancos e nulos
+   - Validação de dados
+   - Exibição de resultados formatados
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+5. **Sistema de Veículos**
+   - CRUD completo de veículos
+   - Formulário de cadastro e edição
+   - Listagem com filtros
+   - Estatísticas de veículos
 
-## Running unit tests
+## 🛠️ Tecnologias Utilizadas
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular 16**
+- **Angular Material**
+- **TypeScript**
+- **SCSS**
+- **RxJS**
+- **Angular CDK**
 
-## Running end-to-end tests
+## 📁 Estrutura do Projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+src/
+├── app/
+│   ├── desafios/
+│   │   ├── fatorial/
+│   │   ├── multiplos/
+│   │   ├── ordenacao/
+│   │   ├── votos/
+│   │   ├── veiculos/
+│   │   └── shared/
+│   ├── core/
+│   └── shared/
+```
 
-## Further help
+## 🎨 Design System
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+A aplicação utiliza um design system consistente com:
+
+- **Cores Principais**:
+  - Azul Primário: `#007AFF`
+  - Fundo Gradiente: `linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)`
+  - Texto: `#ffffff`
+
+- **Componentes**:
+  - Cards com efeito de vidro (backdrop-filter)
+  - Botões com hover effects
+  - Formulários responsivos
+  - Feedback visual para ações
+
+## 🚀 Como Executar
+
+1. **Pré-requisitos**
+   - Node.js (versão 16 ou superior)
+   - npm ou yarn
+
+2. **Instalação**
+   ```bash
+   # Clone o repositório
+   git clone [URL_DO_REPOSITÓRIO]
+
+   # Instale as dependências
+   npm install
+   # ou
+   yarn install
+   ```
+
+3. **Executando o Projeto**
+   ```bash
+   # Inicie o servidor de desenvolvimento
+   npm start
+   # ou
+   yarn start
+   ```
+
+4. **Build para Produção**
+   ```bash
+   # Crie o build de produção
+   npm run build
+   # ou
+   yarn build
+   ```
+
+## 📱 Responsividade
+
+A aplicação é totalmente responsiva e se adapta a diferentes tamanhos de tela:
+- Desktop (> 768px)
+- Tablet (600px - 768px)
+- Mobile (< 600px)
+
+## 🔍 Testes
+
+Para executar os testes unitários:
+```bash
+npm test
+# ou
+yarn test
+```
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT.
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Por favor, leia as diretrizes de contribuição antes de enviar pull requests.
