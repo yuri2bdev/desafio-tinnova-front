@@ -1,0 +1,140 @@
+<div class="veiculo-lista-container">
+  <div class="lista-header">
+    <div class="header-left">
+      <app-home-button></app-home-button>
+      <h2 class="lista-title">📋 Lista de Veículos</h2>
+    </div>
+    <div class="actions-container">
+      <div class="search-container" [class.expanded]="pesquisaExpandida">
+        <button 
+          mat-icon-button 
+          (click)="togglePesquisa()"
+          class="search-toggle">
+          <mat-icon>search</mat-icon>
+        </button>
+        <div class="search-input-container" *ngIf="pesquisaExpandida">
+          <input 
+            type="text" 
+            [(ngModel)]="filtro" 
+            (keyup)="aplicarFiltro()" 
+            placeholder="Buscar veículo..."
+            class="search-input">
+          <button 
+            *ngIf="filtro" 
+            mat-icon-button 
+            class="clear-button"
+            (click)="limparFiltro()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        routerLink="/desafios/veiculos/novo">
+        <mat-icon>add</mat-icon>
+        Cadastrar Novo Veículo
+      </button>
+    </div>
+  </div>
+
+  <div class="loading-container" *ngIf="carregando">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Carregando veículos...</span>
+  </div>
+
+  <div class="table-container mat-elevation-z8" *ngIf="!carregando">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Marca Column -->
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
+        <td mat-cell *matCellDef="let veiculo"> {{veiculo.marca}} </td>
+      </ng-container>
+
+      <!-- Modelo Column -->
+      <ng-container matColumnDef="veiculo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
+        <td mat-cell *matCellDef="let veiculo"> {{veiculo.veiculo}} </td>
+      </ng-container>
+
+      <!-- Ano Column -->
+      <ng-container matColumnDef="ano">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano </th>
+        <td mat-cell *matCellDef="let veiculo"> {{veiculo.ano}} </td>
+      </ng-container>
+
+      <!-- Vendido Column -->
+      <ng-container matColumnDef="vendido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendido </th>
+        <td mat-cell *matCellDef="let veiculo"> 
+          <mat-icon *ngIf="veiculo.vendido" class="vendido-icon">check_circle</mat-icon>
+          <mat-icon *ngIf="!veiculo.vendido" class="nao-vendido-icon">cancel</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Data Criação Column -->
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Criação </th>
+        <td mat-cell *matCellDef="let veiculo"> {{formatarData(veiculo.created)}} </td>
+      </ng-container>
+
+      <!-- Data Atualização Column -->
+      <ng-container matColumnDef="updated">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Última Atualização </th>
+        <td mat-cell *matCellDef="let veiculo"> {{formatarData(veiculo.updated)}} </td>
+      </ng-container>
+
+      <!-- Ações Column -->
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let veiculo" class="acoes-cell">
+          <button 
+            mat-icon-button 
+            color="primary" 
+            (click)="verDetalhes(veiculo.id)"
+            matTooltip="Ver detalhes">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button 
+            mat-icon-button 
+            color="accent" 
+            (click)="editarVeiculo(veiculo.id)"
+            matTooltip="Editar veículo">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button 
+            mat-icon-button 
+            color="warn" 
+            (click)="excluirVeiculo(veiculo)"
+            matTooltip="Excluir veículo">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr 
+        mat-row 
+        *matRowDef="let row; columns: displayedColumns;" 
+        class="veiculo-row"
+        [class.vendido-row]="row.vendido"></tr>
+
+      <!-- Linha para quando não há dados -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-data-cell" [attr.colspan]="displayedColumns.length">
+          <div class="no-data-message">
+            <mat-icon>sentiment_dissatisfied</mat-icon>
+            <span *ngIf="filtro">Nenhum veículo encontrado com o termo "{{filtro}}"</span>
+            <span *ngIf="!filtro">Não há veículos cadastrados.</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator 
+      [pageSizeOptions]="[5, 10, 25, 100]" 
+      showFirstLastButtons 
+      aria-label="Selecione uma página">
+    </mat-paginator>
+  </div>
+</div> 

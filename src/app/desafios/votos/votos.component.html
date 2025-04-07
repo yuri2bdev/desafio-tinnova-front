@@ -1,0 +1,81 @@
+<div class="votes-container">
+  <div class="title-container">
+    <h1>📊 Cálculo de Percentuais de Votos</h1>
+  </div>
+
+  <form [formGroup]="votesForm" (ngSubmit)="calculatePercentages()" class="votes-form">
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="totalVoters">Total de Eleitores</label>
+          <input id="totalVoters" type="number" formControlName="totalVoters" min="1" class="form-input">
+          <div class="error-message" *ngIf="votesForm.get('totalVoters')?.hasError('required') && votesForm.get('totalVoters')?.touched">
+            Campo obrigatório
+          </div>
+          <div class="error-message" *ngIf="votesForm.get('totalVoters')?.hasError('min') && votesForm.get('totalVoters')?.touched">
+            Deve ser maior que zero
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="validVotes">Votos Válidos</label>
+          <input id="validVotes" type="number" formControlName="validVotes" min="0" class="form-input">
+          <div class="error-message" *ngIf="votesForm.get('validVotes')?.hasError('required') && votesForm.get('validVotes')?.touched">
+            Campo obrigatório
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="blankVotes">Votos Brancos</label>
+          <input id="blankVotes" type="number" formControlName="blankVotes" min="0" class="form-input">
+          <div class="error-message" *ngIf="votesForm.get('blankVotes')?.hasError('required') && votesForm.get('blankVotes')?.touched">
+            Campo obrigatório
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nullVotes">Votos Nulos</label>
+          <input id="nullVotes" type="number" formControlName="nullVotes" min="0" class="form-input">
+          <div class="error-message" *ngIf="votesForm.get('nullVotes')?.hasError('required') && votesForm.get('nullVotes')?.touched">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="votesForm.invalid || loading" class="submit-button">
+          Calcular
+        </button>
+      </div>
+    </div>
+  </form>
+  
+  <div *ngIf="error" class="error-card">
+    <div class="error-content">
+      <span class="error-icon">⚠️</span>
+      <span>{{ error }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="results" class="results-card">
+    <div class="results-grid">
+      <div class="result-item">
+        <span class="result-icon">✓</span>
+        <span class="result-label">Votos Válidos:</span>
+        <strong class="result-value">{{ results.percentValidos }}</strong>
+      </div>
+      <div class="result-item">
+        <span class="result-icon">○</span>
+        <span class="result-label">Votos Brancos:</span>
+        <strong class="result-value">{{ results.percentBrancos }}</strong>
+      </div>
+      <div class="result-item">
+        <span class="result-icon">✗</span>
+        <span class="result-label">Votos Nulos:</span>
+        <strong class="result-value">{{ results.percentNulos }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-spinner">Carregando...</div>
+</div>

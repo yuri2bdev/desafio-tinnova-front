@@ -1,0 +1,46 @@
+<div class="multiplos-container">
+  <div class="title-container">
+    <h1>➗ Soma dos Múltiplos de 3 ou 5</h1>
+  </div>
+
+  <form [formGroup]="multiplosForm" (ngSubmit)="calcularSoma()" class="multiplos-form">
+    <div class="form-card">
+      <div class="form-group">
+        <label for="limite">Informe um número inteiro positivo:</label>
+        <input id="limite" type="number" formControlName="limite" min="1" class="form-input" placeholder="Ex: 10">
+        <div class="error-message" *ngIf="multiplosForm.get('limite')?.hasError('required') && multiplosForm.get('limite')?.touched">
+          Este campo é obrigatório
+        </div>
+        <div class="error-message" *ngIf="multiplosForm.get('limite')?.hasError('min') && multiplosForm.get('limite')?.touched">
+          Informe um número maior que zero
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="multiplosForm.invalid || loading" class="submit-button">
+          Calcular Soma
+        </button>
+      </div>
+    </div>
+  </form>
+  
+  <div *ngIf="error" class="error-card">
+    <div class="error-content">
+      <span class="error-icon">⚠️</span>
+      <span>{{ error }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="resultado !== null" class="result-card">
+    <div class="result-content">
+      <span class="result-icon">✅</span>
+      <span class="result-text">A soma dos múltiplos de 3 ou 5 menores que {{ numeroDigitado }} é: <strong>{{ resultado }}</strong></span>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-spinner">Carregando...</div>
+
+  <div class="example-container">
+    <p class="example-text">Exemplo: Se você digitar 10, o sistema irá somar 3 + 5 + 6 + 9 = 23.</p>
+  </div>
+</div>

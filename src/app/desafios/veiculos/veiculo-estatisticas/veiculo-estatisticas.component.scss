@@ -1,0 +1,206 @@
+.estatisticas-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.estatisticas-header {
+  margin-bottom: 1.5rem;
+}
+
+.estatisticas-title {
+  color: #007AFF;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  gap: 1rem;
+}
+
+.estatisticas-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.resumo-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.resumo-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+  }
+  
+  &.total-card {
+    border-left: 4px solid #007AFF;
+  }
+  
+  &.vendidos-card {
+    border-left: 4px solid #34C759;
+  }
+  
+  &.nao-vendidos-card {
+    border-left: 4px solid #FF9500;
+  }
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  opacity: 0.8;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.card-value {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.graficos-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grafico-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  mat-card-header {
+    padding: 1rem 1rem 0;
+    
+    mat-card-title {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    mat-card-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+    }
+  }
+  
+  mat-card-content {
+    padding: 1rem;
+  }
+}
+
+.grafico-wrapper {
+  height: 300px;
+  position: relative;
+}
+
+.sem-dados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  
+  mat-icon {
+    font-size: 3rem;
+    height: 3rem;
+    width: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+  }
+  
+  .info-secundaria {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+  }
+}
+
+// Estilos para as tabelas
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.estatisticas-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  th {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  td {
+    color: rgba(255, 255, 255, 0.7);
+    
+    &:nth-child(2), &:nth-child(3) {
+      text-align: right;
+    }
+  }
+  
+  tbody tr {
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+} 

@@ -1,0 +1,256 @@
+.votes-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    color: #007AFF;
+    font-family: "Montserrat", Sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 0.75rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: #007AFF;
+      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+    }
+    
+    /* Remove setas de incremento/decremento dos inputs numéricos */
+    &[type="number"] {
+      -moz-appearance: textfield; /* Firefox */
+    }
+    
+    &[type="number"]::-webkit-inner-spin-button, 
+    &[type="number"]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  
+  .error-message {
+    color: #ff4444;
+    font-size: 0.75rem;
+    margin-top: 0.2rem;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  
+  .submit-button {
+    padding: 0.6rem 1.75rem;
+    background: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: #0062cc;
+      transform: translateY(-2px);
+    }
+    
+    &:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}
+
+.results-card {
+  margin-top: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.results-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  color: #ffffff;
+  
+  .result-icon {
+    font-size: 1.25rem;
+    min-width: 25px;
+    text-align: center;
+  }
+  
+  .result-label {
+    flex: 1;
+    font-size: 0.95rem;
+  }
+  
+  .result-value {
+    font-size: 1.1rem;
+    color: #007AFF;
+    min-width: 70px;
+    text-align: right;
+  }
+}
+
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #007AFF;
+  font-weight: bold;
+}
+
+.error-card {
+  margin-top: 1.25rem;
+  background: rgba(255, 59, 48, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 20px rgba(255, 59, 48, 0.15);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ff3b30;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.error-icon {
+  font-size: 1.1rem;
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  .votes-container {
+    padding: 0.75rem;
+  }
+
+  .title-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 0.5rem;
+    
+    .form-input {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .form-card, .results-card, .error-card {
+    padding: 1rem;
+  }
+  
+  .result-item {
+    padding: 0.25rem;
+    
+    .result-icon {
+      min-width: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .result-label {
+      font-size: 0.9rem;
+    }
+    
+    .result-value {
+      font-size: 1rem;
+      min-width: 60px;
+    }
+  }
+}
+
+// Ajuste adicional para telas muito pequenas
+@media (max-width: 360px) {
+  .votes-container {
+    padding: 0.5rem;
+  }
+  
+  .title-container h1 {
+    font-size: 1.35rem;
+  }
+  
+  .form-card, .results-card, .error-card {
+    padding: 0.75rem;
+  }
+}

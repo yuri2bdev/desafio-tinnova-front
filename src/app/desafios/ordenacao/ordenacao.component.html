@@ -1,0 +1,94 @@
+<div class="ordenacao-container">
+  <div class="title-container">
+    <h1>🫧 Ordenação Bubble Sort</h1>
+  </div>
+
+  <form [formGroup]="ordenacaoForm" (ngSubmit)="ordenarComBubbleSort()" class="ordenacao-form">
+    <div class="form-card">
+      <div class="tooltip">
+        <div class="tooltip-icon">ℹ️</div>
+        <div class="tooltip-text">
+          Bubble Sort compara pares de elementos e os troca de lugar se estiverem fora de ordem. O processo se repete até a lista estar ordenada.
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="numeros">Digite os números separados por vírgula:</label>
+        <input id="numeros" type="text" formControlName="numeros" class="form-input" placeholder="Ex: 5,3,8,1,9">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="ordenacaoForm.invalid || loading" class="submit-button">
+          <span *ngIf="!loading">Ordenar com Bubble Sort</span>
+          <span *ngIf="loading" class="spinner-text">Ordenando...</span>
+        </button>
+        <button type="button" (click)="limparForm()" class="clear-button" *ngIf="ordenacaoForm.value.numeros">
+          Limpar
+        </button>
+      </div>
+    </div>
+  </form>
+  
+  <div *ngIf="erro" class="error-card">
+    <div class="error-content">
+      <span class="error-icon">⚠️</span>
+      <span>{{ erro }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="listaOriginal && listaOrdenada" class="result-card">
+    <div class="result-content">
+      <div class="result-lists">
+        <div class="list-item">
+          <span class="list-icon">📥</span>
+          <span class="list-label">Original:</span>
+          <span class="list-value">{{ listaOriginal | json }}</span>
+        </div>
+        <div class="list-item">
+          <span class="list-icon">📤</span>
+          <span class="list-label">Ordenada:</span>
+          <span class="list-value result">{{ listaOrdenada | json }}</span>
+        </div>
+      </div>
+      <button type="button" class="steps-button" (click)="togglePassos()">
+        📊 {{ mostrarPassos ? 'Ocultar' : 'Ver' }} passo a passo
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarPassos && listaOriginal && listaOrdenada" class="steps-card">
+    <div class="steps-title">Como funciona o Bubble Sort:</div>
+    <div class="steps-content">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-description">
+          Compara elementos adjacentes (pares) na lista.
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-description">
+          Se o primeiro elemento for maior que o segundo, eles são trocados.
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-description">
+          Esse processo é repetido até que nenhuma troca seja necessária, indicando que a lista está ordenada.
+        </div>
+      </div>
+      <div class="step-example">
+        Exemplo com a sua lista: {{ listaOriginal | json }} <br>
+        <div class="bubbles-container">
+          <div class="bubble" *ngFor="let numero of listaOriginal">{{ numero }}</div>
+          <div class="arrow">➡️</div>
+          <div class="bubble sorted" *ngFor="let numero of listaOrdenada">{{ numero }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+</div>

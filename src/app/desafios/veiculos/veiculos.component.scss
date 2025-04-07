@@ -1,0 +1,60 @@
+.veiculos-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.veiculos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.veiculos-title {
+  color: #007AFF;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  &.active {
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+  }
+  
+  &:not(.active) {
+    color: rgba(255, 255, 255, 0.7);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+.veiculos-content {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}

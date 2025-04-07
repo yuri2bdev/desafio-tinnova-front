@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+// Import Angular Material theming functions
+@use '@angular/material' as mat;
+
+// Override the default theme with a dark one
+@include mat.core();
+
+$dark-primary: mat.define-palette(mat.$blue-palette, 500);
+$dark-accent: mat.define-palette(mat.$light-blue-palette, 500);
+$dark-warn: mat.define-palette(mat.$red-palette, 500);
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $dark-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($dark-theme);
+
+// Global styles
+html, body { 
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body { 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background-color: #000000;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.mat-app-background {
+  background-color: #000000 !important;
+}
+
+// Reduz o padding interno de qualquer componente do Angular Material
+.mat-card, .mat-dialog-container, .mat-drawer, .mat-table {
+  padding: 12px !important;
+}

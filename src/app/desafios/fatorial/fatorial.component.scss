@@ -1,0 +1,351 @@
+.fatorial-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+
+  h1 {
+    color: #007AFF;
+    font-family: "Montserrat", Sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  cursor: pointer;
+
+  .tooltip-icon {
+    font-size: 1.25rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip-text {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(0, 122, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 122, 255, 0.3);
+    color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 8px;
+    width: 250px;
+    font-size: 0.9rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  &:hover {
+    .tooltip-icon {
+      opacity: 1;
+    }
+    
+    .tooltip-text {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    
+    &:focus {
+      outline: none;
+      border-color: #007AFF;
+      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+    }
+    
+    /* Remove setas de incremento/decremento dos inputs numéricos */
+    &[type="number"] {
+      -moz-appearance: textfield; /* Firefox */
+    }
+    
+    &[type="number"]::-webkit-inner-spin-button, 
+    &[type="number"]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  
+  .submit-button {
+    padding: 0.75rem 1.5rem;
+    background: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    
+    &:hover {
+      background: #0062cc;
+      transform: translateY(-2px);
+    }
+    
+    &:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}
+
+.result-card {
+  margin-top: 1.5rem;
+  background: rgba(52, 199, 89, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(52, 199, 89, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.result-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #ffffff;
+  
+  .result-icon {
+    font-size: 1.75rem;
+    min-width: 24px;
+    text-align: center;
+  }
+  
+  .result-text {
+    font-size: 1.1rem;
+    
+    strong {
+      color: #34C759;
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.error-card {
+  margin-top: 1.5rem;
+  background: rgba(255, 59, 48, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(255, 59, 48, 0.15);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ff3b30;
+  font-weight: 500;
+}
+
+.error-icon {
+  font-size: 1.25rem;
+}
+
+.loading-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-left-color: #007AFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+.spinner-text {
+  display: inline-flex;
+  align-items: center;
+  
+  &::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-color: #fff transparent #fff transparent;
+    animation: spin 1s linear infinite;
+  }
+}
+
+.example-container {
+  margin-top: 2rem;
+  padding: 0.5rem;
+}
+
+.example {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.example-title {
+  font-weight: 600;
+  color: #007AFF;
+  margin-bottom: 0.5rem;
+}
+
+.example-item {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  .fatorial-container {
+    padding: 0.75rem;
+  }
+
+  .title-container h1 {
+    font-size: 1.5rem;
+  }
+  
+  .form-card {
+    padding: 1.25rem;
+  }
+  
+  .tooltip {
+    top: 0.5rem;
+    right: 0.5rem;
+    
+    .tooltip-text {
+      width: 200px;
+      font-size: 0.8rem;
+    }
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+  }
+  
+  .form-input {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .result-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    
+    .result-icon {
+      font-size: 1.5rem;
+    }
+    
+    .result-text {
+      font-size: 1rem;
+      
+      strong {
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  .result-card, .error-card {
+    padding: 1rem;
+  }
+  
+  .example-container {
+    margin-top: 1.5rem;
+  }
+  
+  .example {
+    padding: 0.75rem;
+  }
+  
+  .example-item {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,115 @@
+<div class="estatisticas-container">
+  <div class="header">
+    <div class="header-left">
+      <app-home-button></app-home-button>
+      <h2>📊 Estatísticas de Veículos</h2>
+    </div>
+  </div>
+
+  <div class="estatisticas-header">
+    <h2 class="estatisticas-title">📊 Estatísticas de Veículos</h2>
+  </div>
+
+  <div class="loading-container" *ngIf="carregando">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Carregando estatísticas...</span>
+  </div>
+
+  <div class="estatisticas-content" *ngIf="!carregando">
+    <!-- Cards de resumo -->
+    <div class="resumo-cards">
+      <mat-card class="resumo-card total-card">
+        <mat-card-content>
+          <div class="card-icon">🚗</div>
+          <div class="card-info">
+            <div class="card-title">Total de Veículos</div>
+            <div class="card-value">{{ totalVeiculos }}</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="resumo-card vendidos-card">
+        <mat-card-content>
+          <div class="card-icon">✅</div>
+          <div class="card-info">
+            <div class="card-title">Veículos Vendidos</div>
+            <div class="card-value">{{ totalVendidos }}</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="resumo-card nao-vendidos-card">
+        <mat-card-content>
+          <div class="card-icon">🔄</div>
+          <div class="card-info">
+            <div class="card-title">Veículos Disponíveis</div>
+            <div class="card-value">{{ totalNaoVendidos }}</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Dados em tabelas ao invés de gráficos -->
+    <div class="graficos-container">
+      <mat-card class="grafico-card">
+        <mat-card-header>
+          <mat-card-title>Veículos por Década</mat-card-title>
+          <mat-card-subtitle>Distribuição dos veículos por década de fabricação</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="tabela-wrapper">
+            <table class="estatisticas-tabela">
+              <thead>
+                <tr>
+                  <th>Década</th>
+                  <th>Quantidade</th>
+                  <th>Porcentagem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let label of decadasChartData.labels; let i = index">
+                  <td>{{ label }}</td>
+                  <td>{{ decadasChartData.datasets[0].data[i] }}</td>
+                  <td>{{ (decadasChartData.datasets[0].data[i] / totalVeiculos * 100).toFixed(1) }}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="grafico-card">
+        <mat-card-header>
+          <mat-card-title>Veículos por Marca</mat-card-title>
+          <mat-card-subtitle>Top 10 marcas com mais veículos</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="tabela-wrapper">
+            <table class="estatisticas-tabela">
+              <thead>
+                <tr>
+                  <th>Marca</th>
+                  <th>Quantidade</th>
+                  <th>Porcentagem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let label of marcasChartData.labels; let i = index">
+                  <td>{{ label }}</td>
+                  <td>{{ marcasChartData.datasets[0].data[i] }}</td>
+                  <td>{{ (marcasChartData.datasets[0].data[i] / totalVeiculos * 100).toFixed(1) }}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="sem-dados" *ngIf="!carregando && totalVeiculos === 0">
+    <mat-icon>insert_chart</mat-icon>
+    <p>Não há dados suficientes para exibir estatísticas.</p>
+    <p class="info-secundaria">Cadastre veículos para visualizar os gráficos.</p>
+  </div>
+</div> 

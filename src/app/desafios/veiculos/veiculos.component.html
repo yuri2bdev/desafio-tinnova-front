@@ -1,0 +1,33 @@
+<div class="veiculos-container">
+  <div class="veiculos-header">
+    <h1 class="veiculos-title">🚗 Módulo de Veículos</h1>
+    <div class="nav-buttons">
+      <a 
+        [routerLink]="['/desafios/veiculos']" 
+        routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}" 
+        mat-button
+        class="nav-button">
+        <mat-icon>list</mat-icon> Listagem
+      </a>
+      <a 
+        [routerLink]="['/desafios/veiculos/novo']" 
+        routerLinkActive="active" 
+        mat-button
+        class="nav-button">
+        <mat-icon>add_circle</mat-icon> Cadastrar Novo
+      </a>
+      <a 
+        [routerLink]="['/desafios/veiculos/estatisticas']" 
+        routerLinkActive="active" 
+        mat-button
+        class="nav-button">
+        <mat-icon>bar_chart</mat-icon> Estatísticas
+      </a>
+    </div>
+  </div>
+  
+  <div class="veiculos-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

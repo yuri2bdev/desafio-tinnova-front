@@ -1,0 +1,92 @@
+<div class="veiculo-detalhes-container">
+  <div class="header">
+    <div class="header-left">
+      <app-home-button></app-home-button>
+      <h2>🔍 Detalhes do Veículo</h2>
+    </div>
+    <div class="botoes-acao">
+      <button mat-button (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar para lista
+      </button>
+      <button mat-raised-button color="primary" (click)="editar()" *ngIf="veiculo">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
+    </div>
+  </div>
+
+  <div class="loading-container" *ngIf="carregando">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Carregando dados do veículo...</span>
+  </div>
+
+  <div class="detalhes-conteudo" *ngIf="!carregando && veiculo">
+    <mat-card>
+      <mat-card-content>
+        <div class="veiculo-info">
+          <div class="veiculo-header">
+            <h3 class="veiculo-titulo">{{ veiculo.marca }} {{ veiculo.veiculo }}</h3>
+            <div class="veiculo-status" [ngClass]="{'status-vendido': veiculo.vendido, 'status-disponivel': !veiculo.vendido}">
+              {{ veiculo.vendido ? 'Vendido' : 'Disponível' }}
+            </div>
+          </div>
+
+          <div class="veiculo-grid">
+            <div class="info-item">
+              <div class="info-label">ID</div>
+              <div class="info-valor">{{ veiculo.id }}</div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">Marca</div>
+              <div class="info-valor">{{ veiculo.marca }}</div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">Modelo</div>
+              <div class="info-valor">{{ veiculo.veiculo }}</div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">Ano</div>
+              <div class="info-valor">{{ veiculo.ano }}</div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">Status de Venda</div>
+              <div class="info-valor">
+                <mat-icon *ngIf="veiculo.vendido" class="icon-vendido">check_circle</mat-icon>
+                <mat-icon *ngIf="!veiculo.vendido" class="icon-disponivel">cancel</mat-icon>
+                {{ veiculo.vendido ? 'Vendido' : 'Disponível' }}
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">Data de Cadastro</div>
+              <div class="info-valor">{{ formatarData(veiculo.created) }}</div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-label">Última Atualização</div>
+              <div class="info-valor">{{ formatarData(veiculo.updated) }}</div>
+            </div>
+          </div>
+
+          <div class="info-descricao">
+            <div class="info-label">Descrição</div>
+            <div class="info-valor descricao-texto">{{ veiculo.descricao }}</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="nao-encontrado" *ngIf="!carregando && !veiculo">
+    <mat-icon>sentiment_dissatisfied</mat-icon>
+    <p>Veículo não encontrado</p>
+    <button mat-raised-button color="primary" (click)="voltar()">
+      Voltar para a lista
+    </button>
+  </div>
+</div> 
