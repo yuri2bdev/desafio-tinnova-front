@@ -1,6 +1,9 @@
 <div class="multiplos-container">
-  <div class="title-container">
-    <h1>➗ Soma dos Múltiplos de 3 ou 5</h1>
+  <div class="header">
+    <div class="header-left">
+      <app-home-button></app-home-button>
+      <h2>➗ Soma dos Múltiplos de 3 ou 5</h2>
+    </div>
   </div>
 
   <form [formGroup]="multiplosForm" (ngSubmit)="calcularSoma()" class="multiplos-form">

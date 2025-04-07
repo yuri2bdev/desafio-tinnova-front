@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrdenacaoRoutingModule } from './ordenacao-routing.module';
 import { OrdenacaoComponent } from './ordenacao.component';
 import { BubbleSortService } from './bubble-sort.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BubbleSortService } from './bubble-sort.service';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OrdenacaoRoutingModule
+    OrdenacaoRoutingModule,
+    SharedModule
   ],
   providers: [
     BubbleSortService

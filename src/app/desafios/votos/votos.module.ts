@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { VotosRoutingModule } from './votos-routing.module';
 import { VotosComponent } from './votos.component';
 import { VotosService } from './votos.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { VotosService } from './votos.service';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    VotosRoutingModule
+    VotosRoutingModule,
+    SharedModule
   ],
   providers: [
     DecimalPipe,

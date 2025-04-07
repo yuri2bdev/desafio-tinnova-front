@@ -1,6 +1,9 @@
 <div class="votes-container">
-  <div class="title-container">
-    <h1>📊 Cálculo de Percentuais de Votos</h1>
+  <div class="header">
+    <div class="header-left">
+      <app-home-button></app-home-button>
+      <h2>📊 Cálculo de Percentuais de Votos</h2>
+    </div>
   </div>
 
   <form [formGroup]="votesForm" (ngSubmit)="calculatePercentages()" class="votes-form">

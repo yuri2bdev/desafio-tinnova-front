@@ -1,10 +1,23 @@
 .veiculos-container {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    z-index: -1;
+  }
 }
 
 .veiculos-header {
