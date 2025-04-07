@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 .desafios-container {
   padding: 2rem;
   max-width: 1200px;
@@ -19,19 +21,87 @@
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding-top: 0.5rem;
 }
 
-.header-left {
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.svg-container {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  height: 180px;
+  margin-bottom: -15px;
 }
 
-h2 {
-  color: #007AFF;
-  margin: 0;
-  font-size: 1.5rem;
+svg {
+  display: block;
+  font: 7em 'Montserrat', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  width: 100%;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.text-copy {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: 6% 29%;
+  stroke-width: 5px;
+  stroke-dashoffset: 0%;
+  animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1) {
+  stroke: #007AFF;
+  animation-delay: -1s;
+}
+
+.text-copy:nth-child(2) {
+  stroke: #00C6FF;
+  animation-delay: -2s;
+}
+
+.text-copy:nth-child(3) {
+  stroke: #0057FF;
+  animation-delay: -3s;
+}
+
+.text-copy:nth-child(4) {
+  stroke: #0094FF;
+  animation-delay: -4s;
+}
+
+.text-copy:nth-child(5) {
+  stroke: #00D4FF;
+  animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+  100% {
+    stroke-dashoffset: -35%;
+  }
+}
+
+.tinnova-logo {
+  height: 65px;
+  margin-top: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .cards-grid {
@@ -88,6 +158,7 @@ h2 {
       margin: 0 0 0.5rem 0;
       font-size: 1.2rem;
       font-weight: 500;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     p {
@@ -95,6 +166,7 @@ h2 {
       margin: 0;
       font-size: 0.9rem;
       line-height: 1.4;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
   }
 }
