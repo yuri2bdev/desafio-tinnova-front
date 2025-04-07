@@ -79,7 +79,7 @@ A aplicação utiliza um design system consistente com:
 2. **Instalação**
    ```bash
    # Clone o repositório
-   git clone [URL_DO_REPOSITÓRIO]
+   git clone [[URL_DO_REPOSITÓRIO]](https://github.com/yuri2bdev/desafio-tinnova-front.git)
 
    # Instale as dependências
    npm install
